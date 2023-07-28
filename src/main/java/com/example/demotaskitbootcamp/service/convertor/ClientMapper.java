@@ -2,7 +2,7 @@ package com.example.demotaskitbootcamp.service.convertor;
 
 import com.example.demotaskitbootcamp.persistence.entity.Client;
 import com.example.demotaskitbootcamp.service.dto.ClientDto;
-import com.example.demotaskitbootcamp.web.controller.request.ClientRequest;
+import com.example.demotaskitbootcamp.web.request.ClientRequest;
 import com.example.demotaskitbootcamp.web.response.ClientResponse;
 import org.mapstruct.Mapper;
 
@@ -21,5 +21,8 @@ public interface ClientMapper {
   Client requestToModel(ClientRequest clientRequest);
 
   ClientResponse dtoToResponse(ClientDto clientDto);
+
+  List<ClientResponse> toListResponse(
+          List<ClientDto> clientDtos);
 
 }

@@ -3,7 +3,7 @@ package com.example.demotaskitbootcamp.web.validator;
 import com.example.demotaskitbootcamp.persistence.entity.Client;
 import com.example.demotaskitbootcamp.service.ClientService;
 import com.example.demotaskitbootcamp.service.convertor.ClientMapper;
-import com.example.demotaskitbootcamp.web.controller.request.ClientRequest;
+import com.example.demotaskitbootcamp.web.request.ClientRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

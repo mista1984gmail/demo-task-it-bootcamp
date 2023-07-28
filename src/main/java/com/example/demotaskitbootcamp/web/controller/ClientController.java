@@ -4,10 +4,15 @@ import com.example.demotaskitbootcamp.exception.ClientWithEmailExistException;
 import com.example.demotaskitbootcamp.service.ClientService;
 import com.example.demotaskitbootcamp.service.convertor.ClientMapper;
 import com.example.demotaskitbootcamp.service.dto.ClientDto;
-import com.example.demotaskitbootcamp.web.controller.request.ClientRequest;
+import com.example.demotaskitbootcamp.web.request.ClientRequest;
 import com.example.demotaskitbootcamp.web.response.ClientResponse;
 import com.example.demotaskitbootcamp.web.response.ClientResponseWithFullName;
 import com.example.demotaskitbootcamp.web.validator.EmailValidator;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +37,11 @@ public class ClientController {
 
     private final EmailValidator emailValidator;
 
+    @Operation(summary = "Save client")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Save client", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ClientResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal server error")})
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     public ClientResponse save(@Valid @RequestBody ClientRequest clientRequest, BindingResult emailBinding) {
@@ -44,19 +54,28 @@ public class ClientController {
         return clientMapper.dtoToResponse(clientService.save(clientMapper.requestToDto(clientRequest)));
     }
 
+    @Operation(summary = "Find all clients with pagination and sorting by different fields")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Find clients", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ClientResponse.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal server error")})
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ClientDto> findAll(@RequestParam(value = "page", required = false) Integer page,
+    public List<ClientResponse> findAll(@RequestParam(value = "page", required = false) Integer page,
                                    @RequestParam(value = "clients_per_page", required = false) Integer clientsPerPage,
                                    @RequestParam(value = "sort_by", required = false) String sortBy) {
         log.info("Find all clients");
         if (page == null || clientsPerPage == null) {
-            return clientService.findAll();
+            return clientMapper.toListResponse(clientService.findAll());
         } else {
-            return clientService.findWithPagination(page, clientsPerPage, sortBy);
+            return clientMapper.toListResponse(clientService.findWithPagination(page, clientsPerPage, sortBy));
         }
     }
-
+    @Operation(summary = "Find all clients with pagination and sorting by email")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Find clients", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ClientResponseWithFullName.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal server error")})
     @GetMapping("/sortByEmail")
     @ResponseStatus(HttpStatus.OK)
     public List<ClientResponseWithFullName> findAllAndSortByEmail(@RequestParam(value = "page", required = false) Integer page) {

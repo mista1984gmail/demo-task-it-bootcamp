@@ -1,4 +1,4 @@
-package com.example.demotaskitbootcamp.web.controller.request;
+package com.example.demotaskitbootcamp.web.request;
 
 import com.example.demotaskitbootcamp.persistence.entity.Role;
 import com.example.demotaskitbootcamp.web.validator.OnlyLatinLetters;
