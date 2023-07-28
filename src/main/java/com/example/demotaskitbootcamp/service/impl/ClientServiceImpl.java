@@ -46,7 +46,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Optional<Client> findByEmail(String email) {
-        log.info("Find user by email: {}", email);
+        log.info("Find client by email: {}", email);
         return clientRepository.findByEmail(email);
 
     }
@@ -68,6 +68,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<ClientResponseWithFullName> findAllAndSortByEmail(Integer page) {
+        log.info("Find all clients sorting by email");
         return clientRepository.findAll(PageRequest.of(page, Constant.COUNT_CLIENTS_PER_PAGE, Sort.by("email"))).getContent().stream()
                 .map(convertClientService::convertClientToClientResponseWithFullName)
                 .collect(Collectors.toList());

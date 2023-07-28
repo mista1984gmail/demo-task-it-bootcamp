@@ -60,7 +60,7 @@ public class ClientController {
     @GetMapping("/sortByEmail")
     @ResponseStatus(HttpStatus.OK)
     public List<ClientResponseWithFullName> findAllAndSortByEmail(@RequestParam(value = "page", required = false) Integer page) {
-        log.info("Find all clients");
+        log.info("Find all clients sorting by email");
             return clientService.findAllAndSortByEmail(page);
     }
 
