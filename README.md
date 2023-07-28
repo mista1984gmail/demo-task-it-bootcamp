@@ -15,6 +15,7 @@ The project uses the following technologies:
 9.  **Testing** - unit tests to test the service layer and integration tests to test the controller layer using Mockito framework and Testcontainers.
 
 **Project description:**
+
 The project has an endpoint for saving clients: http://localhost:8081/api/v1/clients
    ![img.png](img/img4.png)
 If incorrect data was sent (wrong email, wrong field length, null values, names contain non-Latin letters, non-unique email), an exception will be thrown.
@@ -26,5 +27,8 @@ The application has an endpoint for receiving clients sorted by email and displa
    ![img.png](img/img9.png)
 The application has an endpoint for receiving clients in a sorted form, where you can set the number of clients on the page, as well as the field by which you want to sort: http://localhost:8081/api/v1/clients?clients_per_page=50&sort_by=email&page=0
    ![img.png](img/img10.png)
+
+
+Thank you for your time to read the description.
 
 
