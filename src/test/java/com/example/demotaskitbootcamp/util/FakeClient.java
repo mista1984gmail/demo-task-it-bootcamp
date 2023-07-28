@@ -7,8 +7,6 @@ import com.example.demotaskitbootcamp.web.request.ClientRequest;
 import com.example.demotaskitbootcamp.web.response.ClientResponse;
 import com.example.demotaskitbootcamp.web.response.ClientResponseWithFullName;
 
-import java.time.LocalDate;
-import java.util.Collections;
 
 public class FakeClient {
 

@@ -7,7 +7,6 @@ import com.example.demotaskitbootcamp.service.convertor.ClientMapper;
 import com.example.demotaskitbootcamp.service.dto.ClientDto;
 import com.example.demotaskitbootcamp.util.FakeClient;
 import com.example.demotaskitbootcamp.web.response.ClientResponseWithFullName;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,10 +16,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
